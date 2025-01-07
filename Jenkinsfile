@@ -5,7 +5,7 @@ pipeline{
     }
 
     stages{
-        stage('step1'){
+        stage('step1') {
             steps {
                 su '''
                 cd yan-maven-docker-project
@@ -14,7 +14,7 @@ pipeline{
             }
         }
 
-        stage('step2'){
+        stage('step2') {
             steps {
                 su '''
                 cd yan-maven-docker-project
