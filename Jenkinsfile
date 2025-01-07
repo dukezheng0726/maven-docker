@@ -6,7 +6,7 @@ pipeline{
 
     stages{
         stage('step1'){
-            steps{
+            steps {
                 su '''
                 cd yan-maven-docker-project
                 mvn clean install          
@@ -15,7 +15,7 @@ pipeline{
         }
 
         stage('step2'){
-            steps{
+            steps {
                 su '''
                 cd yan-maven-docker-project
                 echo "Building Docker"
