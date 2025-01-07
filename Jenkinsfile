@@ -4,7 +4,7 @@ pipeline {
         pollSCM '* * * * *'
     }
 
-    stages{
+    stages {
         stage('step1') {
             steps {
                 su '''
