@@ -1,12 +1,12 @@
-pipeline {
+pipeline{
     agent any
-    triggers {
+    triggers{
         pollSCM '* * * * *'
     }
 
-    stages {
-        stage("step1") {
-            steps {
+    stages{
+        stage("step1"){
+            steps{
                 sh '''
                 cd yan-maven-docker-project
                 mvn clean install          
@@ -14,8 +14,8 @@ pipeline {
             }
         }
 
-        stage("step2") {
-            steps {
+        stage("step2"){
+            steps{
                 sh '''
                 cd yan-maven-docker-project
                 echo "Building Docker"
