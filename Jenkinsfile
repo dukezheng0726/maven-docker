@@ -1,31 +1,30 @@
 pipeline {
     agent any
-
     triggers {
         pollSCM '* * * * *'
     }
 
     stages {
-        stage('Maven-Build') {
+        stage("Maven-Build") {
             steps {
-                su '''
-                cd yan-maven-docker-project
+                sh '''
+                
+                cd my-maven-docker-project
                 mvn clean install
+
                 '''
-            }            
-        }  
+            }
+        }
 
-         stage('Docker-Build') {
+        stage("Docker-Build") {
             steps {
-                su '''
-                cd yan-maven-docker-project
+                sh '''
+                cd my-maven-docker-project
+                echo "Building Docker"
                 docker build -t java-image:v1 .
-                '''    
-            }            
-        }  
+                '''
+                
+            }
+        }
     }
-
 }
-
-
-
