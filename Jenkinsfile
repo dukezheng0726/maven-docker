@@ -23,7 +23,7 @@ pipeline {
                 echo "Building Docker"
                 docker build -t java-image:v1 .
                 '''
-                
+                // 
             }
         }
     }
