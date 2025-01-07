@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    
+
     triggers {
         pollSCM '* * * * *'
     }
@@ -23,15 +23,6 @@ pipeline {
                 '''    
             }            
         }  
-
-        //  stage('Docker-Run') {
-        //     steps {
-        //         su '''
-        //         docker run -p 8090:8080 java-image:v1
-        //         '''    
-        //     }            
-        // }  
-
     }
 
 }
