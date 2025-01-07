@@ -9,7 +9,7 @@ pipeline {
             steps {
                 sh '''
                 
-                cd my-maven-docker-project
+                cd yan-maven-docker-project
                 mvn clean install
 
                 '''
@@ -19,7 +19,7 @@ pipeline {
         stage("Docker-Build") {
             steps {
                 sh '''
-                cd my-maven-docker-project
+                cd yan-maven-docker-project
                 echo "Building Docker"
                 docker build -t java-image:v1 .
                 '''
