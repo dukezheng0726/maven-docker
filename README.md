@@ -1,3 +1,1 @@
 # maven-docker
-
-test
