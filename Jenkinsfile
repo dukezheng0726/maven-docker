@@ -3,25 +3,23 @@ pipeline{
     triggers{
         pollSCM '* * * * *'
     }
-
     stages{
-        stage("step1"){
+        stage('1'){
             steps{
                 sh '''
                 cd yan-maven-docker-project
-                mvn clean install          
+                mvn clean install                    
                 '''
             }
         }
-
-        stage("step2"){
+        stage('2'){
             steps{
                 sh '''
                 cd yan-maven-docker-project
                 echo "Building Docker"
-                docker build -t java-image:v1 .           
+                docker build -t java-image:v1 .      
                 '''
-            } 
+            }
         }
     }
 }
