@@ -1,0 +1,17 @@
+version: 0.2
+
+phases:
+  build:
+    commands:
+      - cd yan-maven-docker-project
+      - mvn clean install
+  post_build:
+    commands:
+      - echo "Build Compelted Sucessful"
+      - ls -l target/
+      - docker build -t yan-maven-docket-project.jar .
+      - docker images
+artifacts:
+  files:
+    - "yan-maven-docker-project/target/*.jar"
+  discard-paths: yes
