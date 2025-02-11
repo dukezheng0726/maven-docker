@@ -1,6 +1,12 @@
 version: 0.2
 
 phases:
+  pre_build:
+    commands:
+      - echo "login to ECR"
+      - aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT.dkr.ecr.$AWS_REGION.amazonaws.com
+      - mvn clean package -DskipTests
+
   build:
     commands:
       - cd yan-maven-docker-project
@@ -9,8 +15,13 @@ phases:
     commands:
       - echo "Build Compelted Sucessful"
       - ls -l target/
-      - docker build -t yan-maven-docket-project.jar .
+      - docker build -t $IMAGE_REPO_NAME:$IMAGE_TAG .
+      - docker tag $IMAGE_REPO_NAME:$IMAGE_TAG $AWS_ACCOUNT.dkr.ecr.$AWS_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
       - docker images
+      - echo "Docker push to ECR"
+      - docker push $AWS_ACCOUNT.dkr.ecr.$AWS_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
+      - echo "Docker push successfully"
+
 artifacts:
   files:
     - "yan-maven-docker-project/target/*.jar"
